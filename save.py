@@ -13,33 +13,49 @@ def save(list):
         col.close()
 
     current_lst = board.add_list("Советы")
-    advises = list["advices"]["recommended"]
-    for advice in advises:
-        current_lst.add_card(advice)
+    params = list["advices"]["recommended"]
+    for el in params:
+        current_lst.add_card(el)
 
-    board.add_list("Косметика/Гигиена")
-    advises = list["hygiene/cosmetics"]
-    for advice in advises:
-        current_lst.add_card(advice)
+    current_lst = board.add_list("Косметика/Гигиена")
+    params = list["hygiene/cosmetics"]
+    for el in params:
+        current_lst.add_card(el)
 
     board.add_list("Лекарства")
-    advises = list["medicines"]
+    params = list["medicines"]
+    for el in params:
+        current_lst.add_card(el)
 
-    board.add_list("Электроника")
-    advises = list["electronnics"]
-    for advice in advises:
-        current_lst.add_card(advice)
+    current_lst = board.add_list("Электроника")
+    params = list["electronics"]
+    for el in params:
+        current_lst.add_card(el)
 
-    board.add_list("Аксессуары")
-    advises = list["hygiene/cosmetics"]
-    for advice in advises:
-        current_lst.add_card(advice)
+    current_lst =board.add_list("Аксессуары")
+    params = list["accessories"]
+    for el in params:
+        current_lst.add_card(el)
 
+    current_lst =board.add_list("Дополнительная одежда")
+    params = list["clothes"]["additional"]
+    for el in params:
+        current_lst.add_card(el)
 
-    board.add_list("Дополнительная одежда")
-    board.add_list("Обувь")
-    board.add_list("Повседневная одежда")
-    board.add_list("Верхняя одежда")
+    current_lst =board.add_list("Обувь")
+    params = list["clothes"]["shoes"]
+    for el in params:
+        current_lst.add_card(el)
+
+    current_lst =board.add_list("Повседневная одежда")
+    params = list["clothes"]["daily"]
+    for el in params:
+        current_lst.add_card(el)
+
+    current_lst =board.add_list("Верхняя одежда")
+    params = list["clothes"]["outerwear"]
+    for el in params:
+        current_lst.add_card(el)
 
 
 
