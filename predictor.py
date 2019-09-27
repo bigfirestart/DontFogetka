@@ -24,6 +24,5 @@ class Predictor:
         pass
 
 
-
 if __name__ == '__main__':
-    predict({})
+    Predictor({}).predict()
