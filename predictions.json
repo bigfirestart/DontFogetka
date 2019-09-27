@@ -1,0 +1,56 @@
+{
+  "weather": {
+    "temperature": {
+      "-30": ["пуховик", "варежки", "теплая шапка"],
+      "-15": ["пальто", "перчатки", "щарф"],
+      "0": ["куртка", "толстовка", "шарф"],
+      "15": ["толстовка"],
+      "30": ["футболка", "шорты"]
+    },
+    "sunny": ["солнцезащитные очки"],
+    "rainy": ["зонт", "плащ дождевик"]
+  },
+  "country": {
+    "Russia": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "USA": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "France": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Germany": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Brazil": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Thailand": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "China": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Egypt": {
+      "forbidden": [],
+      "recommended": []
+    }
+
+  },
+  "reason": {
+    "work":  ["ноутбук", ""],
+    "tourism": ["аудиогид", "упаковки для сувениров"],
+    "beach": [],
+    "ski": [],
+    "diving": [],
+    "climbing": []
+  }
+}
