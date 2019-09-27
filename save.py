@@ -1,9 +1,51 @@
 from trello import TrelloClient
 import config
 
-client = Trecon,
-    token='4c9eddb81a000b672d3223a29426e925eeebba315b15b2dad9a65bda95a9b1c3',
+client = TrelloClient(
+    api_key=config.TRELLO_API_KEY,
+    token=config.TRELLO_API_SECRET
 )
-def save():
-    all_boards = client.list_boards()
-    print(all_boards)
+def save(list):
+    name = "Поездка 13.08 London"
+    board = client.add_board(name)
+    cols = board.list_lists()
+    for col in cols:
+        col.close()
+
+    current_lst = board.add_list("Советы")
+    advises = list["advices"]["recommended"]
+    for advice in advises:
+        current_lst.add_card(advice)
+
+    board.add_list("Косметика/Гигиена")
+    advises = list["hygiene/cosmetics"]
+    for advice in advises:
+        current_lst.add_card(advice)
+
+    board.add_list("Лекарства")
+    advises = list["medicines"]
+
+    board.add_list("Электроника")
+    advises = list["electronnics"]
+    for advice in advises:
+        current_lst.add_card(advice)
+
+    board.add_list("Аксессуары")
+    advises = list["hygiene/cosmetics"]
+    for advice in advises:
+        current_lst.add_card(advice)
+
+
+    board.add_list("Дополнительная одежда")
+    board.add_list("Обувь")
+    board.add_list("Повседневная одежда")
+    board.add_list("Верхняя одежда")
+
+
+
+
+
+
+
+
+    return "Ok"

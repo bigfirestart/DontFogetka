@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "913721dc2e013c458419e5c53cfa77385b74a7cfbe42f49e38b001dd65d8a9e3"
+            "sha256": "17ae2dd80caf559c32a34ffea437abcb9aa6f6e5b33d639cb8a4be2d7cf03e84"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -121,6 +121,20 @@
             ],
             "version": "==1.1.1"
         },
+        "oauthlib": {
+            "hashes": [
+                "sha256:bee41cc35fcca6e988463cacc3bcb8a96224f470ca547e697b604cc697b2f889",
+                "sha256:df884cd6cbe20e32633f1db1072e9356f53638e4361bef4e8b03c9127c9328ea"
+            ],
+            "version": "==3.1.0"
+        },
+        "py-trello": {
+            "hashes": [
+                "sha256:3cfc411e62da84755b20c1c4b97803360eed14d79c7f9b59c6e530fa7c4f9cdb"
+            ],
+            "index": "pypi",
+            "version": "==0.15.0"
+        },
         "pyowm": {
             "hashes": [
                 "sha256:2ac88777565518b9e9aa3fc172c543ada4cbfc667d83775cd17c0e52ea6ccc86",
@@ -128,6 +142,13 @@
             ],
             "index": "pypi",
             "version": "==2.10.0"
+        },
+        "python-dateutil": {
+            "hashes": [
+                "sha256:7e6584c74aeed623791615e26efd690f29817a27c73085b78e4bad02493df2fb",
+                "sha256:c89805f6f4d64db21ed966fda138f8a5ed7a4fdbc1a8ee329ce1b74e3c74da9e"
+            ],
+            "version": "==2.8.0"
         },
         "pytz": {
             "hashes": [
@@ -142,6 +163,13 @@
                 "sha256:9cf5292fcd0f598c671cfc1e0d7d1a7f13bb8085e9a590f48c010551dc6c4b31"
             ],
             "version": "==2.22.0"
+        },
+        "requests-oauthlib": {
+            "hashes": [
+                "sha256:bd6533330e8748e94bf0b214775fed487d309b8b8fe823dc45641ebcd9a32f57",
+                "sha256:d3ed0c8f2e3bbc6b344fa63d6f933745ab394469da38db16bdddb461c7e25140"
+            ],
+            "version": "==1.2.0"
         },
         "six": {
             "hashes": [
