@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "14e498cf7550750d9bbebcfabe5b673c637f883821bdf3658df7b9ab8e45dca2"
+            "sha256": "913721dc2e013c458419e5c53cfa77385b74a7cfbe42f49e38b001dd65d8a9e3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -149,6 +149,13 @@
                 "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
             ],
             "version": "==1.12.0"
+        },
+        "trello": {
+            "hashes": [
+                "sha256:2d13211b26978283bbe4ac68a4818fb65ec8bcab7685319057a8aba2269f4ab8"
+            ],
+            "index": "pypi",
+            "version": "==0.9.3"
         },
         "urllib3": {
             "hashes": [
