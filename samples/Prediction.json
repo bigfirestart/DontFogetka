@@ -5,12 +5,36 @@
 		"shoes": ["тапки"],
 		"additional": ["варежки"]
 	}, 
-	"aksessuaries": ["очки", "зонт"],
-	"electronnics": ["переходник на G разетки"],
+	"accessories": ["очки", "зонт"],
+	"electronics": ["переходник на G разетки"],
 	"medicines": [],
 	"hygiene/cosmetics": ["солнцезащитный крем"],
 	"advices": {
 		"recommended": ["балолайка"],
-		"not_recommened": ["бухать"]
+		"not_recommended": ["бухать"]
+	},
+	"source": {
+		"departure_point" : "Moscow",
+	  	"destination_point" : "London",
+	  	"arrival_date" : "23.09.2019",
+	  	"return_date" : "01.10.2019",
+	  	"travel_type" : ["beach", "run" , "safari"],
+	  	"people" : {
+			"count": 3,
+			"tourists": [
+		  	{
+				"gender": "male",
+				"adult": true
+		  	},
+		  	{
+				"gender": "female",
+				"adult": true
+		  	},
+		  	{
+				"gender": "male",
+				"adult": false
+		  	}
+			]
+	  	}
 	}
 }

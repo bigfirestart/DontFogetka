@@ -9,7 +9,8 @@ verify_ssl = true
 flask = "*"
 pyowm = "*"
 flask-restful = "*"
-py-trello = "*"
+trello = "*"
+pycountry = "*"
 
 [requires]
 python_version = "3.7"

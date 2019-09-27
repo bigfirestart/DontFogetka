@@ -1,0 +1,151 @@
+{
+  "weather": {
+    "temperature": {
+      "-30": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "пуховик"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "варежки"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "outwear",
+          "item": "теплая шапка"
+        }
+      ],
+      "-15": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "пальто"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "перчкатки"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "шарф"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "шапка"
+        }
+      ],
+      "0": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "куртка"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "толстовка"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "шарф"
+        }
+      ],
+      "15": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "толстовка"
+        }
+      ],
+      "30": [
+        {
+          "type":  "clothes",
+          "subtype": "daily",
+          "item": "футболка"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "daily",
+          "item": "шорты"
+        }
+      ]
+    },
+    "sunny": [
+      {
+        "type":  "accessories",
+        "item": "солнцезащитные очки"
+      }
+    ],
+    "rainy": [
+      {
+        "type": "accessories",
+        "item": "зонт"
+      },
+      {
+        "type":  "clothes",
+        "subtype": "additional",
+        "item": "плащ дождевик"
+      }
+    ]
+  },
+  "country": {
+    "Russia": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "USA": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "France": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Germany": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Brazil": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Thailand": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "China": {
+      "forbidden": [],
+      "recommended": []
+    },
+    "Egypt": {
+      "forbidden": [],
+      "recommended": []
+    }
+
+  },
+  "reason": {
+    "work":  [
+      {
+        "type": "electronics",
+        "item": "ноутбук"
+      }
+    ],
+    "tourism": [
+      {
+        "type": "",
+        "item": ""
+      }
+    ],
+    "beach": [],
+    "ski": [],
+    "diving": [],
+    "climbing": []
+  }
+}
