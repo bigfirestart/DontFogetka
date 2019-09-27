@@ -3,7 +3,7 @@
 		"outerwear": ["куртка", "пальто"],
 		"daily": ["футболки"],
 		"shoes": ["тапки"],
-		"additional": ["варежки"],
+		"additional": ["варежки"]
 	}, 
 	"accessories": ["очки", "зонт"],
 	"electronics": ["переходник на G разетки"],
@@ -13,7 +13,7 @@
 		"recommended": ["балолайка"],
 		"not_recommended": ["бухать"]
 	},
-	"info": {
+	"source": {
 		"departure_point" : "Moscow",
 	  	"destination_point" : "London",
 	  	"arrival_date" : "23.09.2019",

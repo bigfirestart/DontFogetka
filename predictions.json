@@ -1,14 +1,99 @@
 {
   "weather": {
     "temperature": {
-      "-30": ["пуховик", "варежки", "теплая шапка"],
-      "-15": ["пальто", "перчатки", "щарф"],
-      "0": ["куртка", "толстовка", "шарф"],
-      "15": ["толстовка"],
-      "30": ["футболка", "шорты"]
+      "-30": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "пуховик"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "варежки"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "outwear",
+          "item": "теплая шапка"
+        }
+      ],
+      "-15": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "пальто"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "перчкатки"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "шарф"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "шапка"
+        }
+      ],
+      "0": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "куртка"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "толстовка"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "additional",
+          "item": "шарф"
+        }
+      ],
+      "15": [
+        {
+          "type":  "clothes",
+          "subtype": "outerwear",
+          "item": "толстовка"
+        }
+      ],
+      "30": [
+        {
+          "type":  "clothes",
+          "subtype": "daily",
+          "item": "футболка"
+        },
+        {
+          "type":  "clothes",
+          "subtype": "daily",
+          "item": "шорты"
+        }
+      ]
     },
-    "sunny": ["солнцезащитные очки"],
-    "rainy": ["зонт", "плащ дождевик"]
+    "sunny": [
+      {
+        "type":  "accessories",
+        "item": "солнцезащитные очки"
+      }
+    ],
+    "rainy": [
+      {
+        "type": "accessories",
+        "item": "зонт"
+      },
+      {
+        "type":  "clothes",
+        "subtype": "additional",
+        "item": "плащ дождевик"
+      }
+    ]
   },
   "country": {
     "Russia": {
@@ -46,8 +131,18 @@
 
   },
   "reason": {
-    "work":  ["ноутбук", ""],
-    "tourism": ["аудиогид", "упаковки для сувениров"],
+    "work":  [
+      {
+        "type": "electronics",
+        "item": "ноутбук"
+      }
+    ],
+    "tourism": [
+      {
+        "type": "",
+        "item": ""
+      }
+    ],
     "beach": [],
     "ski": [],
     "diving": [],
