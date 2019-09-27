@@ -1,0 +1,16 @@
+{
+	"clothes": {
+		"outerwear": ["куртка", "пальто"],
+		"daily": ["футболки"],
+		"shoes": ["тапки"],
+		"additional": ["варежки"],
+	}, 
+	"aksessuaries": ["очки", "зонт"],
+	"electronnics": ["переходник на G разетки"],
+	"medicines": [],
+	"hygiene/cosmetics": ["солнцезащитный крем"],
+	"advices": {
+		"recommended": ["балолайка"],
+		"not_recommened": ["бухать"]
+	}
+}
