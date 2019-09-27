@@ -13,7 +13,6 @@ class Predictor:
         self.owm = pyowm.OWM(config.OWM_API_KEY)
         self.predictions = json.load(open("predictions.json"))
 
-
     @staticmethod
     def _add_item(result, item):
         if item['type'] == 'clothes':
@@ -25,9 +24,8 @@ class Predictor:
 
     def _get_by_weather(self):
         result = []
-        place = self.data['']
-        weather = self.owm.weather_at_place()
-
+        place = self.data['destination_point']
+        weather = self.owm.weather_at_place(place)
 
     def _get_by_reason(self):
         pass
