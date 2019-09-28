@@ -4,7 +4,11 @@ $(document).ready(function() {
 
 function renderSavedFlights() {
 
-    var $flightsList = $('#flights-list');
+    var $savedFlights = $('#saved-flights');
+    var $flightsList = $savedFlights.children('#flights-list');
+    var $noFlightsMsg = $savedFlights.children('#no-trips-msg');
+
+    $savedFlights.children('*').removeClass('invisible');
     $flightsList.children().remove();
 
     chrome.storage.sync.get('flights', res => {
@@ -13,12 +17,39 @@ function renderSavedFlights() {
 
         var infoArr = res.flights.arr;
 
-        for(var i = 0; i < infoArr.length; ++i) {
-            var $item = $('<div>')
-                .text('From: ' + infoArr[i].departure_point);
+        if (infoArr.length === 0) {
+            $flightsList.addClass('invisible');
+            return;
+        }
+        
+        $noFlightsMsg.addClass('invisible');
 
-            var $setupRef = $('<a>')
-                .attr('href', '#')
+        for(var i = 0; i < infoArr.length; ++i) {
+            
+            var $item = $('<div>')
+                .addClass('flight-item');
+
+            var $depart = $('<div>')
+                .text(infoArr[i].departure_point)
+                .addClass('depart')
+                .appendTo($item);
+
+            var $destin = $('<div>')
+                .text(infoArr[i].destination_point)
+                .addClass('destin')
+                .appendTo($item);
+
+            var $date_to = $('<div>')
+                .text(infoArr[i].arrival_date)
+                .addClass('date-to')
+                .appendTo($item);
+
+            var $date_from = $('<div>')
+                .text(infoArr[i].return_date)
+                .addClass('date-from')
+                .appendTo($item);
+
+            var $setupRef = $('<button>')
                 .text('set up')
                 .click(ev => {
                     chrome.tabs.create({
@@ -36,7 +67,8 @@ function renderSavedFlights() {
                         renderSavedFlights();
                     });
                 })
-                .text('remove')
+                .text('x')
+                .addClass('remove-btn')
                 .appendTo($item);
 
             $flightsList.append($item);
