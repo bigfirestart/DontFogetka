@@ -8,12 +8,16 @@ function startVue() {
 	  data: {
 	    message: 'Hello Vue!',
 	  	flight: null,
+	  	predictions: null,
 	  },
 	  methods: {
 	  },
 	  beforeCreate() {
 			chrome.storage.sync.get("flights", res => {
-				this.flight = res.flights.arr[0];
+				flight = res.flights.arr[0];
+  			$.post("localhost:5000/build", flight, response => {
+  				console.log(response);
+  			})	
   			console.log(res.flights.arr[0])
 			})
 	  }  
