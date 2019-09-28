@@ -3,7 +3,7 @@
   "destination_point" : "Zurich",
   "arrival_date" : "23.10.2019",
   "return_date" : "01.12.2019",
-  "travel_type" : ["sking" , "work"],
+  "travel_type" : ["skiing" , "work"],
   "people" : {
     "count": 3,
     "tourists" : [

@@ -18,9 +18,28 @@ def update_response(response: Response):
     return response
 
 
+def fix_date(date):
+    return date.replace(' ', '.') \
+        .replace('янв', '01') \
+        .replace('фев', '02') \
+        .replace('мар', '03') \
+        .replace('апр', '04') \
+        .replace('май', '05') \
+        .replace('июн', '06') \
+        .replace('июл', '07') \
+        .replace('авг', '08') \
+        .replace('сен', '09') \
+        .replace('окт', '10') \
+        .replace('ноя', '11') \
+        .replace('дек', '12')
+
+
 @app.route('/build', methods=['POST'])
 def build_predictions():
-    res = build.build(request.get_json(force=True))
+    req = request.get_json(force=True)
+    req["arrival_date"] = fix_date(req["arrival_date"])
+    req["return_date"] = fix_date(req["return_date"])
+    res = build.build(req)
     return update_response(
         Response(json.dumps(res, ensure_ascii=False), mimetype='application/json')
     )

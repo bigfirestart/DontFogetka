@@ -7,24 +7,117 @@
   
   <link rel="stylesheet" href="styles/buefy.min.css">
   <link rel="stylesheet" href="styles/bulma.min.css">
-  <script src="styles/buefy.min.js"></script>
+  <link rel="stylesheet" href="styles/materialdesignicons.min.css">
+  <link rel="stylesheet" href="styles/materialdesignicons-webfont.woff2">
   
   <script src="scripts/jquery-3.4.1.min.js"></script>
   <script src="scripts/vue.js"></script>
+  <script src="scripts/buefy.min.js"></script>
+  
   <script src="scripts/edit.js"></script>
 </head>
 <body>
   <div id="app">
-  <section class="section">
     <div class="container">
-      <h1 class="title">
-        Предложения по сбору багажа {{ flight }}
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
+      <div class="columns is-vcentered">
+        <div class="column is-8 is-offset-2">
+          <div class="has-text-centered is-size-2">
+            Предложения по сбору багажа
+          </div>
+          <div class="has-text-centered is-size-4">
+            {{ flight.destination_point }} ({{flight.arrival_date}} - {{flight.return_date}})
+          </div>
+          <br>
+          <br>
+          <div>
+            <span class="has-text-weight-medium is-size-5">Уточните ваши цели поездки:</span>
+            <b-field grouped group-multiline>
+              <div class="control" v-for="reason in reasons">
+                  <b-tag
+                    type="is-info"
+                    attached
+                    closable
+                    @close="reasons = reasons.filter( (r) => r !== reason )"
+                  >
+                    {{reason}}
+                  </b-tag>
+              </div>
+            </b-field>
+            <div class="columns">
+              <div class="column is-5">
+                <b-field
+                >
+                  <b-input 
+                    placeholder="Цель..."
+                    v-model="new_reason"
+                    >
+                  </b-input>
+                  <p class="control">
+                      <b-button @click="addReason" class="button is-success">Добавить</b-button>
+                  </p>
+                </b-field>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="columns">
+            <div class="column is-4">
+              <span class="has-text-weight-medium is-size-5">
+                Уточните кол-во людей: {{ people_count }}
+              </span>
+            </div>
+              &nbsp
+            <div class="column is-2">
+              <b-field>
+                <b-numberinput controls-position="compact" min="1" v-model="people_count" type="is-info"></b-numberinput>
+              </b-field>
+            </div>
+          </div>
+          <div class="has-text-weight-medium is-size-5">
+            Уточните информацию о путешественниках
+          </div>
+          <div v-for="human in people">
+            <div class="columns is-vcentered">
+              <div class="column is-5">
+                <b-field>
+                  <b-input v-model="human.name" placeholder="Имя..."></b-input>
+                </b-field>
+              </div>
+              <div class="column is-2">
+                <div class="field">
+                  <b-checkbox v-model="human.adult" type="is-info">
+                    Взрослый
+                  </b-checkbox>
+                </div>
+              </div>
+              <div>  
+                <div class="column is-2">
+                  <div class="field">
+                    <b-switch 
+                      v-model="human.sex"
+                      true-value="Муж"
+                      false-value="Жен"
+                      type="is-info"
+                    >
+                      {{ human.sex }}
+                    </b-switch>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <br>
+            </div>
+          </div>
+          <br>
+          <div>
+            <b-button @click="offer" type="is-success">
+              Предложить
+            </b-button>
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
   </div>
   </body>
 </html>
