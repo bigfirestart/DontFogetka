@@ -78,9 +78,15 @@ function startVue() {
 					}
 	  			};
 	  			console.log(requestInfo);
-	  			chrome.storage.sync.set({
-					requestInfo
-        		});
+	  			chrome.storage.sync.set(
+					requestInfo,
+					() => {
+						console.log('set correctly');
+						chrome.tabs.update({
+     						url: "/predictions.html"
+						});
+					}
+        		);
 			}
 	  	}
 	  },
