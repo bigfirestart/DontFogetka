@@ -3,33 +3,35 @@ chrome.runtime.onMessage.addListener(
         if (!request.type || !request.type === 'choose-flight') return;
         console.log('Notification: user have chosen flight');
 
-        saveFlightInfo(request.flightInfo);
-
-        var addedListener = () => {
+        var doneListener = () => {
             sendResponse({
                 message: 'done',    
             });
         };
+
+        var addCallback = () => {
+            saveFlightInfo(request.flightInfo);
+        };
         
-        showFlightAddedNotification(addedListener, removeLastFlight);
+        showFlightAddedNotification(doneListener, addCallback);
     });
 
-function showFlightAddedNotification(addedListener, removeCallback) {
+function showFlightAddedNotification(doneListener, addCallback) {
     var iconUrl = './resources/icon-night.svg';
     console.log(iconUrl);
 
     var notifOpt = {
         type: 'basic',
         title: 'Nezabudka',
-        message: 'You can setup the travel list for this flight by clicking to the extension\'s button',
+        message: 'Вы желаете запомнить этот вариант перелета для дальнейшего планирования поездки?',
         iconUrl: iconUrl,
 
         buttons: [
             {
-                title: 'Got it!'
+                title: 'Да'
             },
             {
-                title: 'Remove'
+                title: 'Нет'
             }
         ]
     };
@@ -37,8 +39,8 @@ function showFlightAddedNotification(addedListener, removeCallback) {
     chrome.notifications.clear('notif', () => {
         chrome.notifications.create('notif', notifOpt, function(id) {
             chrome.notifications.onButtonClicked.addListener((id, btnIndex) => {
-                if (id === 'notif' && btnIndex === 1) {
-                    removeCallback();
+                if (id === 'notif' && btnIndex === 0) {
+                    addCallback();
                 }
 
                 chrome.notifications.clear(id);
@@ -48,7 +50,7 @@ function showFlightAddedNotification(addedListener, removeCallback) {
                 chrome.notifications.clear(id);
             });
 
-            addedListener();
+            doneListener();
         });
     });
 }
@@ -73,21 +75,3 @@ function saveFlightInfo(info) {
         });
     });
 }
-
-function removeLastFlight() {
-    chrome.storage.sync.get('flights', res => {
-
-        if (!res.flights || !res.flights.arr || !res.flights.arr.length === 0)
-            return;
-
-        var infoArr = res.flights.arr;
-        infoArr.pop();
-
-        chrome.storage.sync.set({ 
-            flights: {
-                arr: infoArr
-            }
-        });
-    });
-}
-

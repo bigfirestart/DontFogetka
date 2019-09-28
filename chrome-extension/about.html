@@ -23,6 +23,10 @@
                 display: none;
             }
 
+            .flight-item:not(:last-child) {
+                border-bottom: 1px solid darkgray;
+            }
+
             .flight-item > a {
                 margin: 0 1em;
             }
@@ -67,8 +71,8 @@
         </div>
 
         <div id="saved-flights" class="item-block">
-            <p id="no-trips-msg" class="invisible"><span class="gray-style">No trips are planned.
-            <br/>Explore flights at <a href="https://www.aviasales.ru/search/">Aviasales</a> to start your travel.</span></p>    
+            <p id="no-trips-msg" class="invisible"><span class="gray-style">Поездки не запланированы.
+            <br/>Начните свое путешествие вместе с сайтом <a href="https://www.aviasales.ru/search/">Aviasales</a>.</span></p>    
 
             <div id="flights-list">
                 <div class="flight-item single">

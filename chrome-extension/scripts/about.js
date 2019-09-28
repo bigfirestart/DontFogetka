@@ -27,7 +27,7 @@ function renderSavedFlights() {
         for(var i = 0; i < infoArr.length; ++i) {
             
             var $item = $('<div>')
-                .addClass('flight-item');
+                .addClass('flight-item both');
 
             var $depart = $('<div>')
                 .text(infoArr[i].departure_point)
@@ -44,10 +44,11 @@ function renderSavedFlights() {
                 .addClass('date-to')
                 .appendTo($item);
 
-            var $date_from = $('<div>')
-                .text(infoArr[i].return_date)
-                .addClass('date-from')
-                .appendTo($item);
+            if (infoArr[i].return_date)
+                var $date_from = $('<div>')
+                    .text(infoArr[i].return_date)
+                    .addClass('date-from')
+                    .appendTo($item);
 
             var $setupRef = $('<button>')
                 .text('set up')
