@@ -8,15 +8,15 @@
     "count": 3,
     "tourists" : [
       {
-        "gender": "male",
+        "sex": "male",
         "adult": true
       },
       {
-        "gender": "female",
+        "sex": "female",
         "adult": true
       },
       {
-        "gender": "male",
+        "sex": "male",
         "adult": false
       }
     ]

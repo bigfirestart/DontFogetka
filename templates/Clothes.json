@@ -2,67 +2,67 @@
   "Шарф" : {
     "temp" : "10 -30",
     "type" : "additional",
-    "gender" : ""
+    "sex" : ""
   },
   "Шапка" : {
     "temp" : "10 -30",
     "type" : "outerwear",
-    "gender" : ""
+    "sex" : ""
   },
   "Куртка" : {
     "temp" : "10 -30",
     "type" : "outerwear",
-    "gender" : ""
+    "sex" : ""
   },
   "Тёплые ботинки" : {
     "temp" : "10 -30",
     "type": "shoes",
-    "gender" : "M"
+    "sex" : "M"
   },
   "Тёплые caпоги" : {
     "temp" : "10 -30",
     "type": "shoes",
-    "gender" : "F"
+    "sex" : "F"
   },
   "Свитер" : {
     "temp" : "10 -30",
     "type": "daily",
-    "gender" : ""
+    "sex" : ""
   },
   "Тёплые носки" : {
     "temp" : "10 -30",
     "type": "daily",
-    "gender" : ""
+    "sex" : ""
   },
   "Футболка" : {
     "temp" : "30 -30",
     "type": "daily",
-    "gender" : ""
+    "sex" : ""
   },
   "Майка" : {
     "temp" : "30 15",
     "type": "daily",
-    "gender" : "M"
+    "sex" : "M"
   },
   "Юбка" : {
     "temp" : "30 15",
     "type": "daily",
-    "gender" : "F"
+    "sex" : "F"
   },
   "Зонт" : {
     "temp" : "10 0",
     "type": "additional",
-    "gender" : "F"
+    "sex" : "F"
   },
   "Кофта": {
     "temp" : "10 -10",
     "type": "daily",
-    "gender" : ""
+    "sex" : ""
   },
   "Шорты" : {
     "temp" : "30 15",
     "type": "daily",
-    "gender" : "M"
+    "sex" : "M"
   }
 
 }

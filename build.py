@@ -21,9 +21,9 @@ def build(list):
     for el in list["people"]["tourists"]:
         if not el["adult"]:
             adults=adults+1
-        if el["gender"] == "male":
+        if el["sex"] == "male":
             males_count = males_count+1
-        if el["gender"] == "female":
+        if el["sex"] == "female":
             females_count = females_count + 1
 
 #TODO смотрит погоду в данном регионе по месяцу
@@ -36,13 +36,13 @@ def build(list):
     final_list = json.loads(open("templates/EmptyPrediction.json",'r').read())
     for el in clothes_list:
         if isInRange(clothes_list[el]["temp"] , weather):
-           if clothes_list[el]["gender"] == '':
+           if clothes_list[el]["sex"] == '':
                name = el
                count = males_count+females_count
-           if clothes_list[el]["gender"] == 'M' and males_count > 0:
+           if clothes_list[el]["sex"] == 'M' and males_count > 0:
                name = el
                count = males_count
-           if clothes_list[el]["gender"] == 'F' and females_count > 0:
+           if clothes_list[el]["sex"] == 'F' and females_count > 0:
                name = el
                count = females_count
            final_list["clothes"][clothes_list[el]["type"]].append({"name" : name , "count" : count})
@@ -52,13 +52,13 @@ def build(list):
     for actv_name in list["travel_type"]:
         for actv in activity_list:
             if activity_list[actv]["type"]== actv_name:
-                if activity_list[actv]["gender"] == '':
+                if activity_list[actv]["sex"] == '':
                     name = actv
                     count = males_count + females_count
-                if activity_list[actv]["gender"] == 'M' and males_count > 0:
+                if activity_list[actv]["sex"] == 'M' and males_count > 0:
                     name = actv
                     count = males_count
-                if activity_list[actv]["gender"] == 'F' and females_count > 0:
+                if activity_list[actv]["sex"] == 'F' and females_count > 0:
                     name = actv
                     count = females_count
                 final_list["activities"].append({"name": name, "count": count})
