@@ -33,5 +33,36 @@
     "temp" : "10 -30",
     "type": "daily",
     "gender" : ""
+  },
+  "Футболка" : {
+    "temp" : "30 -30",
+    "type": "daily",
+    "gender" : ""
+  },
+  "Майка" : {
+    "temp" : "30 15",
+    "type": "daily",
+    "gender" : "M"
+  },
+  "Юбка" : {
+    "temp" : "30 15",
+    "type": "daily",
+    "gender" : "F"
+  },
+  "Зонт" : {
+    "temp" : "10 0",
+    "type": "additional",
+    "gender" : "F"
+  },
+  "Кофта": {
+    "temp" : "10 -10",
+    "type": "daily",
+    "gender" : ""
+  },
+  "Шорты" : {
+    "temp" : "30 15",
+    "type": "daily",
+    "gender" : "M"
   }
+
 }

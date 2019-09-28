@@ -5,3 +5,4 @@ run - беговые кросовки ,беговая одежда
 sking - гороные лыжи , маска , термо бельё
 beach - плавки , купальник , крем от загара ,солнцезащитные очки
 
+ssh = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDba/apCpacHNRO8dhmis/Par1UBQ+i1jqI4ZIDlmumBrfVZeubhFaBYC9arQpZLIs9X0zRoi6w/evqyTDv2kQ4JLUPXoVnJRcBpVHlgT7saLVzMWfDK4vzMc20z+jXEE7EI98EjuhP4F2KvTNofJ1Tgem31vpDU3uWdZD7K8i064GXMonJ3fE3HFpvOe6Bwz7H9iOlSCIwS1wbXP9gqoi+oOVEtxer/odv7bUYKcF6oXjMDqyErz7WI1xdV5vCuotpE34tZNtY7i+c95LdnFAFRDK91uFac6WzuFd/XhVqTDiInW2Bj0wUWDzYt613epOoHKTbEXX75RZPby6m/Sqf kirilllukanov@MacBook-Pro-Kirill.local

@@ -3,7 +3,7 @@ import json
 def isInRange(range: str, temp:int):
     max = int(range.split()[0])
     min = int(range.split()[1])
-    if temp>min and temp<max:
+    if temp>=min and temp<=max:
         return 1
     else:
         return 0
