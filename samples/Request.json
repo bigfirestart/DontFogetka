@@ -1,22 +1,25 @@
 {
-  "departure_point" : "Moscow",
-  "destination_point" : "Zurich",
-  "arrival_date" : "23.10.2019",
-  "return_date" : "01.12.2019",
+  "departure_point" : "Москва",
+  "destination_point" : "Лондон",
+  "arrival_date" : "10.10.2019",
+  "return_date" : "11.10.2019",
   "travel_type" : ["skiing" , "work"],
   "people" : {
     "count": 3,
     "tourists" : [
       {
-        "sex": "male",
+        "name": "Mark",
+        "sex": "M",
         "adult": true
       },
       {
-        "sex": "female",
+        "name": "Jane",
+        "sex": "F",
         "adult": true
       },
       {
-        "sex": "male",
+        "name": "Karl",
+        "sex": "M",
         "adult": false
       }
     ]

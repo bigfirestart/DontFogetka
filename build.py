@@ -1,4 +1,6 @@
 import json
+import datetime
+import ad
 from pprint import pprint
 
 
@@ -33,6 +35,12 @@ def get_count_by_sex(sex, **kwargs):
     elif sex == 'F':
         count = kwargs["females_count"]
     return count
+def get_tourists_by_sex(tourists , sex):
+    tourists_selection = []
+    for tourist in tourists:
+        if tourist["sex"] == sex:
+            tourists_selection.append(tourist)
+    return tourists_selection
 
 
 def add_clothes(tourists, available, **kwargs):
@@ -40,14 +48,18 @@ def add_clothes(tourists, available, **kwargs):
     temperature = kwargs["temperature"]
     males_count = kwargs["males_count"]
     females_count = kwargs["females_count"]
+    travel_duration = kwargs["travel_duration"]
+
+    print(get_tourists_by_sex(tourists,"M"))
     for item in available:
         if is_in_temperature_range(available[item]["temp"], temperature):
-            count = get_count_by_sex(available[item]["sex"], **kwargs)
-            if count > 0:
+            tourists_count = get_count_by_sex(available[item]["sex"], **kwargs)
+            if tourists_count > 0:
                 if not result.get(available[item]["type"]):
                     result[available[item]["type"]] = []
-
-                result[available[item]["type"]].append({"name": item, "count": count})
+                for tourist in tourists:
+                    items_count =  int(travel_duration/3) + 1
+                    result[available[item]["type"]].append({"name": item + " " + tourist["name"], "count": items_count})
     return result
 
 
@@ -60,11 +72,22 @@ def add_activities(activity, available, **kwargs):
             count = get_count_by_sex(available[item]["sex"], **kwargs)
             result.append({"name": item, "count": count})
     return result
+def get_travel_duration(travel_start_date , travel_end_date):
+    tsd = travel_start_date.split(".")
+    ted = travel_end_date.split(".")
+    date1 = datetime.date(int(tsd[2]) ,int(tsd[1]),int(tsd[0]) )
+    date2 = datetime.date(int(ted[2]), int(ted[1]), int(ted[0]))
+    travel_duration = (date2-date1).days
+    return travel_duration
 
 
 def build(request):
     # TODO ищет месяц
     city = request["destination_point"]
+
+    #TODO смотрим колличество дней
+    travel_duration = get_travel_duration(request["arrival_date"] , request["return_date"])
+
     # 12.12.2109
     month = get_season_by_month(int(request["arrival_date"].split(".")[1]))
     # TODO смотрит компанию
@@ -74,9 +97,9 @@ def build(request):
     for tourist in request["people"]["tourists"]:
         if not tourist["adult"]:
             children += 1
-        if tourist["sex"] == "male":
+        if tourist["sex"] == "M":
             males_count += 1
-        elif tourist["sex"] == "female":
+        elif tourist["sex"] == "F":
             females_count += 1
 
     # TODO смотрит погоду в данном регионе по месяцу
@@ -93,7 +116,8 @@ def build(request):
             clothes_list,
             temperature=temperature,
             males_count=males_count,
-            females_count=females_count
+            females_count=females_count,
+            travel_duration=travel_duration
         )
     )
 
@@ -115,35 +139,16 @@ def build(request):
     result["hygiene/cosmetics"].append({"name": "Мачалка", "count": males_count + females_count})
     result["hygiene/cosmetics"].append({"name": "Косметичка", "count": females_count})
 
+    # TODO добавляем рекламу
+    result["ad"] = ad.build(request["travel_type"])
+
     # TODO добавляем погоду
     result["advices"]["info"] = {"temperature": temperature}
     result["source"] = request
     return result
 
 
+
 if __name__ == '__main__':
-    req = {
-        "departure_point": "Moscow",
-        "destination_point": "Zurich",
-        "arrival_date": "23.12.2019",
-        "return_date": "01.10.2019",
-        "travel_type": ["sking", "work"],
-        "people": {
-            "count": 3,
-            "tourists": [
-                {
-                    "sex": "male",
-                    "adult": True
-                },
-                {
-                    "sex": "female",
-                    "adult": True
-                },
-                {
-                    "sex": "male",
-                    "adult": False
-                }
-            ]
-        }
-    }
+    req = json.loads(open("samples/Request.json", 'r').read())
     pprint(build(req))

@@ -97,6 +97,7 @@
         "recommended": [],
         "not_recommended": []
     },
+    "ad" : [],
     "source": {
         "departure_point": "Moscow",
         "destination_point": "Zurich",
