@@ -61,9 +61,28 @@ def add_activities(activity, available, **kwargs):
             result.append({"name": item, "count": count})
     return result
 
+
+def fix_date(date):
+    return date.replace(' ', '.') \
+        .replace('янв', '01') \
+        .replace('фев', '02') \
+        .replace('мар', '03') \
+        .replace('апр', '04') \
+        .replace('май', '05') \
+        .replace('июн', '06') \
+        .replace('июл', '07') \
+        .replace('авг', '08') \
+        .replace('сен', '09') \
+        .replace('окт', '10') \
+        .replace('ноя', '11') \
+        .replace('дек', '12')
+
+
 def build(request):
     # TODO ищет месяц
     city = request["destination_point"]
+    request["arrival_date"] = fix_date(request["arrival_date"])
+    request["return_date"] = fix_date(request["return_date"])
     # 12.12.2109
     month = get_season_by_month(int(request["arrival_date"].split(".")[1]))
     # TODO смотрит компанию

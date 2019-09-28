@@ -1,41 +1,41 @@
 {
-  "London" : {
+  "Лондон" : {
     "summer": 19,
     "fall" : 14,
     "winter": 4,
     "spring": 12
   },
-  "Paris" : {
+  "Париж" : {
     "summer": 24,
     "fall" : 14,
     "winter": 4,
     "spring": 12
   },
-  "Saint Petersburg" : {
+  "Санкт Петербург" : {
     "summer": 21,
     "fall" : 5,
     "winter": -3,
     "spring": 6
   },
-  "Rome" : {
+  "Рим" : {
     "summer": 30,
     "fall" : 21,
     "winter": 11,
     "spring": 18
   },
-  "Los Angeles" : {
+  "Лос анджелес" : {
     "summer": 24,
     "fall" : 21,
     "winter": 18,
     "spring": 18
   },
-  "Tokyo" : {
+  "Токио" : {
     "summer": 27,
     "fall" : 20,
     "winter": 9,
     "spring": 16
   },
-  "Zurich" : {
+  "Цюрих" : {
     "summer": 13,
     "fall" : 4,
     "winter": -7,
