@@ -21,7 +21,10 @@ function renderSavedFlights() {
                 .attr('href', '#')
                 .text('set up')
                 .click(ev => {
-                    chrome.tabs.create({active: true, url: 'travelEdit.html'});
+                    chrome.tabs.create({
+                        active: true,
+                        url: 'travelEdit.html'
+                    });
                 })
                 .appendTo($item);
 
