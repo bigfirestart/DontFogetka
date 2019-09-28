@@ -1,15 +1,52 @@
 $(document).ready(function() {
-    var mutationObserver = new MutationObserver(function() {
-        var sideContent = $('.ticket-desktop__side-content');
-        var btn = $('<button>').appendTo(sideContent);
+    var mutationObserver = new MutationObserver(function(records) {
+        var $sideContent = $('.ticket-desktop__side-content');
+
+        var needUpdate = false;
+        records.forEach(record => {
+            var list = record.addedNodes;
+            for (var i = 0; i < list.length; ++i) {
+                if ($(list[i]).find('.buy-button').length !== 0) {
+                    needUpdate = true;
+                    break;
+                }
+            }
+        });
+
+        if (needUpdate) {
+            $('.nezabudka-btn').remove();
+
+            console.log('need update!');
+            var btn = $('<button>')
+                .text('subscribe')
+                .addClass('nezabudka-btn');
+
+            var cont = $("<div>")
+                .css('text-align', 'center')
+                .appendTo($sideContent);
+                
+            btn.appendTo(cont);
+        }
     });
 
-    mutationObserver.observe( document.getElementsByClassName('app')[0] );
+    mutationObserver.observe(document, {
+        subtree: true,
+        childList: true
+    });
 });
+
 document.addEventListener('click', function(event) {
 
     var button = closestByClassName(event.target, 'buy-button');
-    if (!button) return;
+    if (!button)
+        return;
+
+    var $buttonSpan = $(button).children().find('.buy-button__text');
+    if (!$buttonSpan)
+        return;
+
+    if ($buttonSpan.text() !== 'Купить') 
+        return;
 
     console.log('User have clicked buy button');
 

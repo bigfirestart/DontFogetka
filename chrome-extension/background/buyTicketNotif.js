@@ -5,14 +5,16 @@ chrome.runtime.onMessage.addListener(
 
         saveFlightInfo(request.flightInfo);
 
-        showFlightAddedNotification(removeLastFlight);
-
-        sendResponse({
-            message: 'done',    
-        });
+        var addedListener = () => {
+            sendResponse({
+                message: 'done',    
+            });
+        };
+        
+        showFlightAddedNotification(addedListener, removeLastFlight);
     });
 
-function showFlightAddedNotification(removeCallback) {
+function showFlightAddedNotification(addedListener, removeCallback) {
     var iconUrl = './resources/icon-night.svg';
     console.log(iconUrl);
 
@@ -32,15 +34,22 @@ function showFlightAddedNotification(removeCallback) {
         ]
     };
 
-    chrome.notifications.clear('notif');
+    chrome.notifications.clear('notif', () => {
+        chrome.notifications.create('notif', notifOpt, function(id) {
+            chrome.notifications.onButtonClicked.addListener((id, btnIndex) => {
+                if (id === 'notif' && btnIndex === 1) {
+                    removeCallback();
+                }
 
-    chrome.notifications.create('notif', notifOpt, function(id) {
-    });
+                chrome.notifications.clear(id);
+            });
 
-    chrome.notifications.onButtonClicked.addListener((id, btnIndex) => {
-        if (id === 'notif' && btnIndex === 1) {
-            removeCallback();
-        }
+            chrome.notifications.onClosed(id => {
+                chrome.notifications.clear(id);
+            });
+
+            addedListener();
+        });
     });
 }
 

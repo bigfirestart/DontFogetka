@@ -4,7 +4,11 @@ $(document).ready(function() {
 
 function renderSavedFlights() {
 
-    var $flightsList = $('#flights-list');
+    var $savedFlights = $('#saved-flights');
+    var $flightsList = $savedFlights.children('#flights-list');
+    var $noFlightsMsg = $savedFlights.children('#no-trips-msg');
+
+    $savedFlights.children('*').removeClass('invisible');
     $flightsList.children().remove();
 
     chrome.storage.sync.get('flights', res => {
@@ -13,9 +17,25 @@ function renderSavedFlights() {
 
         var infoArr = res.flights.arr;
 
+        if (infoArr.length === 0) {
+            $flightsList.addClass('invisible');
+            return;
+        }
+        
+        $noFlightsMsg.addClass('invisible');
+
         for(var i = 0; i < infoArr.length; ++i) {
+            
+            /* 
             var $item = $('<div>')
-                .text('From: ' + infoArr[i].departure_point);
+                .addClass('flight-item');
+
+            var $depart = $('<div>')
+                .addClass('') */
+
+            var $item = $('<div>')
+                .addClass('flight-item')
+                .text(infoArr[i].departure_point + '=>' + infoArr[i].destination_point);
 
             var $setupRef = $('<a>')
                 .attr('href', '#')

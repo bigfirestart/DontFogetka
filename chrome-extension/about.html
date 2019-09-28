@@ -4,17 +4,50 @@
         <title>About</title>
         <style>
             body {
+                margin: 0;
                 min-width: 300px;
+                background-color: #fafafa;
             }
+            .item-block:not(:first-child) {
+                padding: 5px;
+                text-align: center;
+                border-bottom: 1px solid darkgray;
+            }
+
+            .gray-style {
+                color: darkgray;
+            }
+
+            .invisible {
+                display: none;
+            }
+
+            .flight-item > a {
+                margin: 0 1em;
+            }
+
         </style>
         <script src="scripts/popup.js"></script>
         <script src="scripts/jquery-3.4.1.min.js"></script>
         <script src="scripts/about.js"></script>
     </head>
     <body>
-        <p>Extension works, when you click "buy tickets" in aviasales.ru. <br />
-        Click <a href="https://www.aviasales.ru/search/">here</a> to buy some tickets.</p>
-        <hr />
-        <div id="flights-list"></div>
+
+        <div class="item-block">
+            <img src="resources/icon-extend-2.svg" alt="icon" />
+        </div>
+
+        <div class="item-block">
+            <p>Description...</p>
+        </div>
+
+        <div id="saved-flights" class="item-block">
+            <p id="no-trips-msg"><span class="gray-style">No trips are planned.
+            <br/>Explore flights at <a href="https://www.aviasales.ru/search/">Aviasales</a> to start your travel.</span></p>    
+
+            <div id="flights-list" class="invisible"></div>
+        </div>
+
+
     </body>
 </html>
