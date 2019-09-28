@@ -1,28 +1,36 @@
 {
     "name": "Nezabudka",
-    "version": "1.0",
+    "version": "3.0",
     "description": "Build an extension!",
     "manifest_version": 2,
 
     "icons": {
-        "16": "./resources/icon.svg",
-        "32": "./resources/icon.svg",
-        "48": "./resources/icon.svg",
-        "128": "./resources/icon.svg"
+        "16": "resources/icon16.png",
+        "32": "resources/icon32.png",
+        "48": "resources/icon48.png",
+        "128": "resources/icon128.png"
       },
 
     "content_scripts": 
     [
         {
-            "matches": ["https://www.aviasales.ru/search/*"],
+            "matches": ["https://www.aviasales.ru/search/*", "https://www.aviasales.com/search/*"],
             "run_at": "document_end",
             "js": ["content-scripts/buyTicketListener.js"]
+        },
+
+        {
+            "matches": ["https://www.aviasales.ru/search/*", "https://www.aviasales.com/search/*"],
+            "run_at": "document_end",
+            "js": ["scripts/jquery-3.4.1.min.js"]
         }
     ],
 
     "background": 
     {
-        "scripts": ["background/buyTicketNotif.js"],
+        "scripts": [
+            "background/buyTicketNotif.js"
+        ],
         "persistent": false
     },
     
@@ -31,5 +39,9 @@
         "default_popup": "about.html"
     },
 
-    "permissions": ["activeTab", "notifications"]
+    "permissions": [
+        "storage",
+        "activeTab",
+        "notifications"
+    ]
 }
