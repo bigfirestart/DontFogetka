@@ -1,0 +1,37 @@
+{
+  "Шарф" : {
+    "temp" : "10 -30",
+    "type" : "additional",
+    "gender" : ""
+  },
+  "Шапка" : {
+    "temp" : "10 -30",
+    "type" : "outerwear",
+    "gender" : ""
+  },
+  "Куртка" : {
+    "temp" : "10 -30",
+    "type" : "outerwear",
+    "gender" : ""
+  },
+  "Тёплые ботинки" : {
+    "temp" : "10 -30",
+    "type": "shoes",
+    "gender" : "M"
+  },
+  "Тёплые caпоги" : {
+    "temp" : "10 -30",
+    "type": "shoes",
+    "gender" : "F"
+  },
+  "Свитер" : {
+    "temp" : "10 -30",
+    "type": "daily",
+    "gender" : ""
+  },
+  "Тёплые носки" : {
+    "temp" : "10 -30",
+    "type": "daily",
+    "gender" : ""
+  }
+}

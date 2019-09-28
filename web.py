@@ -1,13 +1,12 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 import json
-import save
+import save , build
 app = Flask(__name__)
 
 @app.route('/build', methods=['POST'])
-def build():
-    list = json.dumps(request.json)
-    #returns listJson 1
-    return list
+def buildList():
+    res= build.build(request.json)
+    return Response(json.dumps(res, ensure_ascii=False), mimetype='application/json')
 
 @app.route('/save', methods=['POST'])
 def saveList():

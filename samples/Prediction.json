@@ -1,40 +1,49 @@
 {
-	"clothes": {
-		"outerwear": ["куртка", "пальто"],
-		"daily": ["футболки"],
-		"shoes": ["тапки"],
-		"additional": ["варежки"]
-	}, 
-	"accessories": ["очки", "зонт"],
-	"electronics": ["переходник на G разетки"],
-	"medicines": [],
-	"hygiene/cosmetics": ["солнцезащитный крем"],
-	"advices": {
-		"recommended": ["балолайка"],
-		"not_recommended": ["бухать"]
-	},
-	"source": {
-		"departure_point" : "Moscow",
-	  	"destination_point" : "London",
-	  	"arrival_date" : "23.09.2019",
-	  	"return_date" : "01.10.2019",
-	  	"travel_type" : ["beach", "run" , "safari"],
-	  	"people" : {
-			"count": 3,
-			"tourists": [
-		  	{
-				"gender": "male",
-				"adult": true
-		  	},
-		  	{
-				"gender": "female",
-				"adult": true
-		  	},
-		  	{
-				"gender": "male",
-				"adult": false
-		  	}
-			]
-	  	}
-	}
+    "clothes": {
+        "outerwear": [
+            {
+                "name": "Шапка",
+                "count": 3
+            },
+            {
+                "name": "Куртка",
+                "count": 3
+            }
+        ],
+        "daily": [
+            {
+                "name": "Свитер",
+                "count": 3
+            },
+            {
+                "name": "Тёплые носки",
+                "count": 3
+            }
+        ],
+        "shoes": [
+            {
+                "name": "Тёплые ботинки",
+                "count": 2
+            },
+            {
+                "name": "Тёплые caпоги",
+                "count": 1
+            }
+        ],
+        "additional": [
+            {
+                "name": "Шарф",
+                "count": 3
+            }
+        ]
+    },
+    "accessories": [],
+    "electronics": [],
+    "medicines": [],
+    "hygiene/cosmetics": [],
+    "advices": {
+        "recommended": [],
+        "not_recommended": []
+    },
+    "source": {}
 }

@@ -1,0 +1,18 @@
+{
+	"clothes": {
+		"outerwear": [],
+		"daily": [],
+		"shoes": [],
+		"additional": []
+	},
+	"activities": [],
+	"medicines": [],
+	"hygiene/cosmetics": [],
+	"advices": {
+		"info": [],
+		"recommended": [],
+		"not_recommended": []
+	},
+	"source": {
+	}
+}

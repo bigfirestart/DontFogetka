@@ -1,0 +1,51 @@
+{
+  "Ноутбук" : {
+    "type": "work",
+    "gender": ""
+  },
+  "Блокнот" : {
+    "type": "work",
+    "gender": ""
+  },
+  "Ручка" : {
+    "type": "work",
+    "gender": ""
+  },
+  "Беговые кроссовки" : {
+    "type": "run",
+    "gender": ""
+  },
+  "Беговая одежда" : {
+    "type": "run",
+    "gender": ""
+  },
+  "Гороные лыжи" : {
+    "type": "sking",
+    "gender": ""
+  },
+   "Маска" : {
+    "type": "sking",
+    "gender": ""
+  },
+   "Термо бельё" : {
+    "type": "sking",
+    "gender": ""
+  },
+  "Плавки" : {
+    "type": "beach",
+    "gender": "M"
+  },
+  "Купальник" : {
+    "type": "beach",
+    "gender": "F"
+  },
+  "Крем от загара" : {
+    "type": "beach",
+    "gender": ""
+  },
+  "Солнцезащитные очки" : {
+    "type": "beach",
+    "gender": ""
+  }
+
+}
