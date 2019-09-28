@@ -44,7 +44,7 @@ function showFlightAddedNotification(addedListener, removeCallback) {
                 chrome.notifications.clear(id);
             });
 
-            chrome.notifications.onClosed(id => {
+            chrome.notifications.onClosed.addListener(id => {
                 chrome.notifications.clear(id);
             });
 

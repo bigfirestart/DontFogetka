@@ -2,10 +2,11 @@
 <html>
     <head>
         <title>About</title>
+        <meta charset="UTF-8" />
         <style>
             body {
                 margin: 0;
-                min-width: 300px;
+                min-width: 400px;
                 background-color: #fafafa;
             }
             .item-block:not(:first-child) {
@@ -26,6 +27,30 @@
                 margin: 0 1em;
             }
 
+            .destin, .depart {
+                display: inline-block;
+            }
+
+            .flight-item.both > .depart::after {
+                content: "<->";
+                margin: 0 1em
+            }
+            
+            .flight-item.single > .depart::after {
+                background-image: url('resources/arrow.png');
+                width: 100px;
+                height: 100px;
+                background-size: cover;
+            }
+
+            .date-to::before {
+                content: "Туда: "
+            }
+
+            .date-from::before {
+                content: "Обратно: "
+            }
+
         </style>
         <script src="scripts/popup.js"></script>
         <script src="scripts/jquery-3.4.1.min.js"></script>
@@ -42,10 +67,18 @@
         </div>
 
         <div id="saved-flights" class="item-block">
-            <p id="no-trips-msg"><span class="gray-style">No trips are planned.
+            <p id="no-trips-msg" class="invisible"><span class="gray-style">No trips are planned.
             <br/>Explore flights at <a href="https://www.aviasales.ru/search/">Aviasales</a> to start your travel.</span></p>    
 
-            <div id="flights-list" class="invisible"></div>
+            <div id="flights-list">
+                <div class="flight-item single">
+                    <div class="depart">Saint Petersburg</div>
+                    <div class="destin">Rio de Janeiro</div>
+
+                    <div class="date-to">19-04-2020</div>
+                    <div class="date-from">20-04-2020</div>
+                </div>
+            </div>
         </div>
 
 

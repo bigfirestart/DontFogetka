@@ -77,33 +77,6 @@ function closestByClassName(elem, className) {
     }
 }
 
-    /*
-    {
-        "departure_point" : "Moscow",
-        "destination_point" : "London",
-        "arrival_date" : "23.09.2019",
-        "return_date" : "01.10.2019",
-        "travel_type" : ["beach", "run" , "safari"],
-        "people" : {
-            "count": 3,
-            "tourists" : [
-                {
-                    "gender": "male",
-                    "adult": true
-                },
-                {
-                    "gender": "female",
-                    "adult": true
-                },
-                {
-                    "gender": "male",
-                    "adult": false
-                }
-            ]
-        }
-    }
-    */
-
 function getFlightInfoFromPage(buttonElem) {
     var info = {};
 

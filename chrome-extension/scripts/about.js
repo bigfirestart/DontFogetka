@@ -26,19 +26,30 @@ function renderSavedFlights() {
 
         for(var i = 0; i < infoArr.length; ++i) {
             
-            /* 
             var $item = $('<div>')
                 .addClass('flight-item');
 
             var $depart = $('<div>')
-                .addClass('') */
+                .text(infoArr[i].departure_point)
+                .addClass('depart')
+                .appendTo($item);
 
-            var $item = $('<div>')
-                .addClass('flight-item')
-                .text(infoArr[i].departure_point + '=>' + infoArr[i].destination_point);
+            var $destin = $('<div>')
+                .text(infoArr[i].destination_point)
+                .addClass('destin')
+                .appendTo($item);
 
-            var $setupRef = $('<a>')
-                .attr('href', '#')
+            var $date_to = $('<div>')
+                .text(infoArr[i].arrival_date)
+                .addClass('date-to')
+                .appendTo($item);
+
+            var $date_from = $('<div>')
+                .text(infoArr[i].return_date)
+                .addClass('date-from')
+                .appendTo($item);
+
+            var $setupRef = $('<button>')
                 .text('set up')
                 .click(ev => {
                     chrome.tabs.create({
@@ -56,7 +67,8 @@ function renderSavedFlights() {
                         renderSavedFlights();
                     });
                 })
-                .text('remove')
+                .text('x')
+                .addClass('remove-btn')
                 .appendTo($item);
 
             $flightsList.append($item);
