@@ -1,3 +1,11 @@
+$(document).ready(function() {
+    var mutationObserver = new MutationObserver(function() {
+        var sideContent = $('.ticket-desktop__side-content');
+        var btn = $('<button>').appendTo(sideContent);
+    });
+
+    mutationObserver.observe( document.getElementsByClassName('app')[0] );
+});
 document.addEventListener('click', function(event) {
 
     var button = closestByClassName(event.target, 'buy-button');

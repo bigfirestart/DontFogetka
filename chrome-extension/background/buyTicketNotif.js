@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener(
     });
 
 function showFlightAddedNotification(removeCallback) {
-    var iconUrl = './resources/icon.svg';
+    var iconUrl = './resources/icon-night.svg';
     console.log(iconUrl);
 
     var notifOpt = {
