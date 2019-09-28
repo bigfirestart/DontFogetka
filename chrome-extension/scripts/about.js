@@ -8,8 +8,10 @@ function renderSavedFlights() {
     $flightsList.children().remove();
 
     chrome.storage.sync.get('flights', res => {
+        if (!res.flights || !res.flights.arr)
+            return;
+
         var infoArr = res.flights.arr;
-        if (!infoArr) return;
 
         for(var i = 0; i < infoArr.length; ++i) {
             var $item = $('<div>')
@@ -31,7 +33,6 @@ function renderSavedFlights() {
                 .text('remove')
                 .appendTo($item);
 
-            
             $flightsList.append($item);
         }
     });
