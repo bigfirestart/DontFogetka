@@ -36,7 +36,7 @@ def get_count_by_sex(sex, **kwargs):
 
 
 def add_clothes(tourists, available, **kwargs):
-    result = []
+    result = {}
     temperature = kwargs["temperature"]
     males_count = kwargs["males_count"]
     females_count = kwargs["females_count"]
@@ -44,6 +44,9 @@ def add_clothes(tourists, available, **kwargs):
         if is_in_temperature_range(available[item]["temp"], temperature):
             count = get_count_by_sex(available[item]["sex"], **kwargs)
             if count > 0:
+                if not result.get(available[item]["type"]):
+                    result[available[item]["type"]] = []
+
                 result[available[item]["type"]].append({"name": item, "count": count})
     return result
 
@@ -56,7 +59,7 @@ def add_activities(activity, available, **kwargs):
         if available[item] == activity:
             count = get_count_by_sex(available[item]["sex"], **kwargs)
             result.append({"name": item, "count": count})
-
+    return result
 
 def build(request):
     # TODO ищет месяц
@@ -77,7 +80,7 @@ def build(request):
 
     # TODO смотрит погоду в данном регионе по месяцу
     weather_list = json.load(open("templates/Weather.json"))
-    temperature = weather_list[request["destination_point"]][month]
+    temperature = weather_list[city][month]
 
     # TODO подбирает вещи
     clothes_list = json.load(open("templates/Clothes.json"))
@@ -112,7 +115,7 @@ def build(request):
     result["hygiene/cosmetics"].append({"name": "Косметичка", "count": females_count})
 
     # TODO добавляем погоду
-    result["advices"]["info"] = {"temperature": weather}
+    result["advices"]["info"] = {"temperature": temperature}
     result["source"] = request
     return result
 

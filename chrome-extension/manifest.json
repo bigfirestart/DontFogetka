@@ -44,6 +44,9 @@
     "permissions": [
         "storage",
         "activeTab",
-        "notifications"
+        "notifications",
+        "127.0.0.1:5000/*",
+        "95.213.39.16/*",
+        "95.213.39.16:5000/*"
     ]
 }
