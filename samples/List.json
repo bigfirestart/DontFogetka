@@ -1,0 +1,127 @@
+{
+    "clothes": {
+        "outerwear": [
+            {
+                "name": "Шапка",
+                "count": 3
+            },
+            {
+                "name": "Куртка",
+                "count": 3
+            }
+        ],
+        "daily": [
+            {
+                "name": "Свитер",
+                "count": 3
+            },
+            {
+                "name": "Тёплые носки",
+                "count": 3
+            }
+        ],
+        "shoes": [
+            {
+                "name": "Тёплые ботинки",
+                "count": 2
+            },
+            {
+                "name": "Тёплые caпоги",
+                "count": 1
+            }
+        ],
+        "additional": [
+            {
+                "name": "Шарф",
+                "count": 3
+            }
+        ]
+    },
+    "activities": [
+        {
+            "name": "Гороные лыжи",
+            "count": 3
+        },
+        {
+            "name": "Маска",
+            "count": 3
+        },
+        {
+            "name": "Термо бельё",
+            "count": 3
+        },
+        {
+            "name": "Ноутбук",
+            "count": 3
+        },
+        {
+            "name": "Блокнот",
+            "count": 3
+        },
+        {
+            "name": "Ручка",
+            "count": 3
+        }
+    ],
+    "medicines": [],
+    "hygiene/cosmetics": [
+        {
+            "name": "Зубная щётка",
+            "count": 3
+        },
+        {
+            "name": "Зубная паста",
+            "count": 1
+        },
+        {
+            "name": "Гель для душа",
+            "count": 2
+        },
+        {
+            "name": "Шампунь",
+            "count": 2
+        },
+        {
+            "name": "Мачалка",
+            "count": 3
+        },
+        {
+            "name": "Косметичка",
+            "count": 1
+        }
+    ],
+    "advices": {
+        "info": {
+            "temperature": -7
+        },
+        "recommended": [],
+        "not_recommended": []
+    },
+    "source": {
+        "departure_point": "Moscow",
+        "destination_point": "Zurich",
+        "arrival_date": "23.12.2019",
+        "return_date": "01.10.2019",
+        "travel_type": [
+            "sking",
+            "work"
+        ],
+        "people": {
+            "count": 3,
+            "tourists": [
+                {
+                    "gender": "male",
+                    "adult": true
+                },
+                {
+                    "gender": "female",
+                    "adult": true
+                },
+                {
+                    "gender": "male",
+                    "adult": false
+                }
+            ]
+        }
+    }
+}

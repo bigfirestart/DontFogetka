@@ -27,13 +27,13 @@ def build(list):
             females_count = females_count + 1
 
 #TODO смотрит погоду в данном регионе по месяцу
-    weather_list = json.loads(open("samples/Weather.json",'r').read())
+    weather_list = json.loads(open("templates/Weather.json",'r').read())
     for el in weather_list:
         if el == city:
             weather = int(weather_list[el][month])
 #TODO подбирает вещи
-    clothes_list = json.loads(open("samples/Clothes.json", 'r').read())
-    final_list = json.loads(open("samples/EmptyPrediction.json",'r').read())
+    clothes_list = json.loads(open("templates/Clothes.json", 'r').read())
+    final_list = json.loads(open("templates/EmptyPrediction.json",'r').read())
     for el in clothes_list:
         if isInRange(clothes_list[el]["temp"] , weather):
            if clothes_list[el]["gender"] == '':
@@ -47,7 +47,7 @@ def build(list):
                count = females_count
            final_list["clothes"][clothes_list[el]["type"]].append({"name" : name , "count" : count})
 #TODO добавляем активити
-    activity_list = json.loads(open("samples/Activities.json", 'r').read())
+    activity_list = json.loads(open("templates/Activities.json", 'r').read())
     name = ""
     for actv_name in list["travel_type"]:
         for actv in activity_list:
