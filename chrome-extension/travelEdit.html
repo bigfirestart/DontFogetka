@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress HtmlUnknownTag -->
 <html>
 <head>
 	<title>Edit your trip!</title>
@@ -19,7 +20,7 @@
 <body>
   <div id="app">
     <div class="container">
-      <div class="columns is-vcentered">
+      <div class="columns">
         <div class="column is-8 is-offset-2">
           <div class="has-text-centered is-size-2">
             Предложения по сбору багажа
@@ -29,95 +30,144 @@
           </div>
           <br>
           <br>
-          <div>
-            <span class="has-text-weight-medium is-size-5">Уточните ваши цели поездки:</span>
-            <b-field grouped group-multiline>
-              <div class="control" v-for="reason in reasons">
-                  <b-tag
-                    type="is-info"
-                    attached
-                    closable
-                    @close="reasons = reasons.filter( (r) => r !== reason )"
+          <div class="columns is-vertical">
+            <div class="column is-half">
+              <span class="has-text-weight-medium is-size-5">Уточните ваши цели поездки:</span>
+              <b-field
+              >
+                <b-input 
+                  placeholder="Цель..."
+                  v-model="new_reason"
                   >
-                    {{reason}}
-                  </b-tag>
-              </div>
-            </b-field>
-            <div class="columns">
-              <div class="column is-5">
-                <b-field
-                >
-                  <b-input 
-                    placeholder="Цель..."
-                    v-model="new_reason"
-                    >
-                  </b-input>
-                  <p class="control">
-                      <b-button @click="addReason" class="button is-success">Добавить</b-button>
-                  </p>
-                </b-field>
-              </div>
+                </b-input>
+                <p class="control">
+                    <b-button @click="addReason" class="button is-success">Добавить</b-button>
+                </p>
+              </b-field>
             </div>
-          </div>
-          <br>
-          <div class="columns">
-            <div class="column is-4">
-              <span class="has-text-weight-medium is-size-5">
-                Уточните кол-во людей: {{ people_count }}
-              </span>
-            </div>
-              &nbsp
-            <div class="column is-2">
-              <b-field>
-                <b-numberinput controls-position="compact" min="1" v-model="people_count" type="is-info"></b-numberinput>
+            <div class="column is-half">
+              <b-field grouped group-multiline>
+                  <div class="control" v-for="reason in reasons">
+                      <b-tag
+                        type="is-info"
+                        attached
+                        closable
+                        @close="reasons = reasons.filter( (r) => r !== reason )"
+                      >
+                        {{reason}}
+                    </b-tag>
+                </div>
               </b-field>
             </div>
           </div>
           <div class="has-text-weight-medium is-size-5">
             Уточните информацию о путешественниках
           </div>
-          <div v-for="human in people">
-            <div class="columns is-vcentered">
-              <div class="column is-5">
-                <b-field>
-                  <b-input v-model="human.name" placeholder="Имя..."></b-input>
-                </b-field>
-              </div>
-              <div class="column is-2">
-                <div class="field">
-                  <b-checkbox v-model="human.adult" type="is-info">
-                    Взрослый
-                  </b-checkbox>
+            <div class="columns is-vertical">
+                <div class="column is-half">
+                    <div v-for="(human, index) in people">
+                        <div v-if="index % 2 == 0">
+                            <div class="container">
+                                <b-notification @close="deleteHuman(index)" aria-close-label="Close notification">
+                                    <b-field>
+                                        <b-input v-model="people[index].name" placeholder="Имя..."></b-input>
+                                    </b-field>
+                                    <div class="columns">
+                                        <div class="column is-half">
+                                            <div class="field">
+                                                <b-checkbox v-model="people[index].adult" type="is-info">
+                                                    Взрослый
+                                                </b-checkbox>
+                                            </div>
+                                        </div>
+                                        <div class="column is-half">
+                                            <div class="field is-pulled-right">
+                                                <b-switch
+                                                  v-model="people[index].sex"
+                                                  true-value="Муж"
+                                                  false-value="Жен"
+                                                  type="is-info"
+                                                >
+                                                  {{ human.sex }}
+                                                </b-switch>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </b-notification>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="people.length % 2 == 0">
+                        <div class="container">
+                        <b-notification :closable="false" aria-close-label="Close notification">
+                            <div @click="addHuman" class="is-expanded has-text-centered">
+                                <b-icon
+                                    icon="plus-circle-outline"
+                                    size="is-large"
+                                >
+                                </b-icon>
+                            </div>
+                        </b-notification>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-half">
+                    <div v-for="(human, index) in people">
+                        <div v-if="index % 2 == 1">
+                            <div class="container">
+                                <b-notification @close="deleteHuman(index)" aria-close-label="Close notification">
+                                    <b-field>
+                                        <b-input v-model="people[index].name" placeholder="Имя..."></b-input>
+                                    </b-field>
+                                    <div class="columns">
+                                        <div class="column is-half">
+                                            <div class="field">
+                                                <b-checkbox v-model="people[index].adult" type="is-info">
+                                                    Взрослый
+                                                </b-checkbox>
+                                            </div>
+                                        </div>
+                                        <div class="column is-half">
+                                            <div class="field is-pulled-right">
+                                                <b-switch
+                                                  v-model="people[index].sex"
+                                                  true-value="Муж"
+                                                  false-value="Жен"
+                                                  type="is-info"
+                                                >
+                                                  {{ human.sex }}
+                                                </b-switch>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </b-notification>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="people.length % 2 == 1">
+                        <div class="container">
+                            <b-notification :closable="false" aria-close-label="Close notification">
+                                <div @click="addHuman" class="is-expanded has-text-centered">
+                                    <b-icon
+                                        icon="plus-circle-outline"
+                                        size="is-large"
+                                    >
+                                    </b-icon>
+                                </div>
+                            </b-notification>
+                        </div>
+                    </div>
                 </div>
               </div>
-              <div>  
-                <div class="column is-2">
-                  <div class="field">
-                    <b-switch 
-                      v-model="human.sex"
-                      true-value="Муж"
-                      false-value="Жен"
-                      type="is-info"
-                    >
-                      {{ human.sex }}
-                    </b-switch>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <br>
-            </div>
+             <b-button @click="offer" type="is-success">
+                Предложить
+              </b-button>
           </div>
           <br>
-          <div>
-            <b-button @click="offer" type="is-success">
-              Предложить
-            </b-button>
-          </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
-  </body>
+</body>
 </html>
