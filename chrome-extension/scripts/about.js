@@ -20,6 +20,9 @@ function renderSavedFlights() {
             var $setupRef = $('<a>')
                 .attr('href', '#')
                 .text('set up')
+                .click(ev => {
+                    chrome.tabs.create({active: true, url: 'travelEdit.html'});
+                })
                 .appendTo($item);
 
             var $removeBtn = $('<button>')
