@@ -26,7 +26,7 @@ function startVue() {
 	  		if(this.reasons.indexOf(this.new_reason) === -1) {
 	  			this.reasons.push(this.new_reason);
 	  		}
-	  	}
+	  	},
 	  	offer() {
 	  		if(this.reasons.length < 1) {
 	  			this.$buefy.notification.open({
