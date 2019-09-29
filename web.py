@@ -47,7 +47,8 @@ def build_predictions():
 
 @app.route('/save', methods=['POST'])
 def save_predictions():
-    response = save.save(request.json)
+    req = request.get_json(force=True)
+    response = save.save(req)
     return update_response(
         Response("ok")
     )
