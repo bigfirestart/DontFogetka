@@ -9,6 +9,7 @@ function startVue() {
         data: {
 	        message: "1231231",
             isLoading: false,
+			data: {}
         },
         created() {
 	        this.isLoading = true;
@@ -18,7 +19,13 @@ function startVue() {
                     .done( (response) => {
                         console.log(`cool`, response);
                         this.isLoading = false;
-                    });
+                        this.data = response;
+                        this.data
+                    })
+					.faill( (response) => {
+						console.log("Fail while fetching data");
+						this.isLoading = false;
+					});
 				console.log(data)
 			});
 
