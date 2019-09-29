@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>About</title>
+        <title>Passangers info</title>
         <meta charset="UTF-8" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
         <style>
             body {
                 margin: 0;
@@ -56,10 +55,6 @@
                 content: "Обратно: "
             }
 
-            form {
-                text-align: left;
-            }
-
         </style>
         <script src="scripts/popup.js"></script>
         <script src="scripts/jquery-3.4.1.min.js"></script>
@@ -68,11 +63,11 @@
     <body>
 
         <div class="item-block">
-            <img src="resources/icon-extend-2.svg" alt="icon" />
+            <img src="resources/icon-extend.svg" alt="icon" />
         </div>
 
         <div class="item-block">
-            <p>Описание...</p>
+            <p>Description...</p>
         </div>
 
         <div id="saved-flights" class="item-block">
@@ -89,54 +84,5 @@
                 </div>
             </div>
         </div>
-
-        <div id="trip-info" class="item-block invisible">
-            <h2>Информация о путешествии</h2>
-            <div class="depart" id="depart-info"></div>
-            <div class="destin" id="destin-info"></div>
-
-            <div class="date-to" id="date-to-info"></div>
-            <div class="date-from" id="date-from-info"></div>
-
-            <h3>Вид путешествия</h3>
-            <label for="sports">sports</label>
-            <input type="checkbox" name="tag" id="sports" />
-
-            <label for="business">business</label>
-            <input type="checkbox" name="tag" id="business" />
-        </div>
-    
-        <div id="pass-info" class="item-block invisible">
-            <h2>Информация о пассажирах</h2>
-            <form id="pass-proto" class="invisible">
-                <div>
-                    <label for="pass-name-id">Имя</label>
-                    <input id="pass-name-id" type="text" name="pass-name" placeholder="Имя пассажира"/>
-                </div>
-    
-                <div>
-                    <div id="del-pass-btn"></div>
-
-                    <label for="male">Муж</label>
-                    <input type="radio" id="male" name="sex" value="M"/>
-    
-                    <label for="female">Жен</label>
-                    <input type="radio" id="female" name="sex" value="F"/>
-                </div>
-    
-                <div>
-                    <label for="child">Ребенок</label>
-                    <input type="radio" id="child" name="age" value="child"/>
-        
-                    <label for="female">Взрослый</label>
-                    <input type="radio" id="adult" name="age" value="adult"/>
-                </div>
-
-            </form>
-            <div id="pass-container"></div>
-            <div id="add-pass-btn">Добавить пассажира</div>
-        </div>
-        <button class="invisible" id="done-btn">Готово</button>
-        <button class="invisible" id="cancel-btn">Отмена</button>        
     </body>
 </html>
