@@ -7,23 +7,68 @@ client = TrelloClient(
 )
 
 
-def save(list):
-    name = "Поездка " + list["source"]["arrival_date"] + " " + list["source"]["destination_point"]
+def trello_save_list(card , save_list):
+    items_list = []
+    for item in save_list:
+        for item_iter in range(item["count"]):
+            items_list.append(item["name"] + " " + str(item_iter + 1))
+    card.add_checklist(card.name, items_list)
 
-    # board = client.add_board(name)
-    # TODO закоментить перед показом
+
+def trello_add_other(request, other_list):
+
+    activity_card = other_list.add_card("Активности")
+    trello_save_list(activity_card,request["activities"])
+
+    med_card = other_list.add_card("Лекарства")
+    trello_save_list(med_card, request["medicines"])
+
+    cosm_card = other_list.add_card("Косметика/Гигиена")
+    trello_save_list(cosm_card, request["hygiene/cosmetics"])
+
+
+def trello_add_clothes(request , clothes_list):
+
+    under_card = clothes_list.add_card("Верхняя одежда")
+    trello_save_list(under_card, request["clothes"]["outerwear"])
+
+    daily_card = clothes_list.add_card("Повседневная одежда")
+    trello_save_list(daily_card, request["clothes"]["daily"])
+
+    shoes_card = clothes_list.add_card("Обувь")
+    trello_save_list(shoes_card, request["clothes"]["shoes"])
+
+    additional_card = clothes_list.add_card("Дополнительная одежда")
+    trello_save_list(additional_card, request["clothes"]["additional"])
+
+
+def save(request):
+    name = "Поездка " + request["source"]["arrival_date"] + " " + request["source"]["destination_point"]
+    
+    # TODO создаём доску или пересобирает её
+    found = False
     all_boards = client.list_boards()
     for brd in all_boards:
         if brd.name == name:
             board = brd
+            found = True
+            print("Board with name: " + name + " found")
+    if not found:
+        print("Creating board with name: " + name)
+        board = client.add_board(name)
 
     cols = board.list_lists()
     for col in cols:
         col.close()
 
+    # TODO Реклама
+    ad_list = board.add_list("Акции и предложения")
+    req_ad = request["ad"]
+    for ad in req_ad:
+        ad_list.add_card(ad)
+    
     # TODO Информация
-    current_lst = board.add_list("Информация")
-
+    special_list = board.add_list("Информация")
     for label in board.get_labels():
         if label.color == 'green':
             green_label = label
@@ -31,71 +76,23 @@ def save(list):
             red_label = label
         if label.color == 'yellow':
             yellow_label = label
-    params = list["advices"]["info"]
-    for el in params:
-        current_lst.add_card("Ожидаемая температура: " + str(params["temperature"]), labels=[yellow_label])
-    params = list["advices"]["not_recommended"]
-    for el in params:
-        current_lst.add_card(el, labels=[red_label])
-    params = list["advices"]["recommended"]
-    for el in params:
-        card = current_lst.add_card(el, labels=[green_label])
+    req_info = request["advices"]["info"]
+
+    # TODO не правильно с температурой
+    for inf in req_info:
+        special_list.add_card("Ожидаемая температура: " + str(req_info["temperature"]), labels=[yellow_label])
+    req_not_rec = request["advices"]["not_recommended"]
+    for not_rec in req_not_rec:
+        special_list.add_card(not_rec, labels=[red_label])
+    req_rec = request["advices"]["recommended"]
+    for rec in req_rec:
+        special_list.add_card(rec, labels=[green_label])
 
     # TODO Другое
-    current_lst = board.add_list("Другое")
-
-    current_card = current_lst.add_card("Активности")
-    params = list["activities"]
-    items = []
-    for el in params:
-        for iter in range(el["count"]):
-            items.append(el["name"] + " " + str(iter + 1))
-    current_card.add_checklist("Аксессуары", items)
-
-    current_card = current_lst.add_card("Лекарства")
-    params = list["medicines"]
-    items = []
-    for el in params:
-        for iter in range(el["count"]):
-            items.append(el["name"] + " " + str(iter + 1))
-    current_card.add_checklist("Лекарства", items)
-
-    current_card = current_lst.add_card("Косметика/Гигиена")
-    params = list["hygiene/cosmetics"]
-    items = []
-    for el in params:
-        for iter in range(el["count"]):
-            items.append(el["name"] + " " + str(iter + 1))
-    current_card.add_checklist("Косметика/Гигиена", items)
+    other_list = board.add_list("Другое")
+    trello_add_other(request , other_list)
 
     # TODO Одежда
-    current_lst = board.add_list("Одежда")
-
-    current_card = current_lst.add_card("Верхняя одежда")
-    params = list["clothes"]["outerwear"]
-    items = []
-    for el in params:
-        for iter in range(el["count"]):
-            items.append(el["name"] + " " + str(iter + 1))
-    current_card.add_checklist("Верхняя одежда", items)
-
-    current_card = current_lst.add_card("Повседневная одежда")
-    params = list["clothes"]["daily"]
-    items = []
-    for iter in range(el["count"]):
-        items.append(el["name"] + " " + str(iter + 1))
-    current_card.add_checklist("Повседневная одежда", items)
-
-    current_card = current_lst.add_card("Обувь")
-    params = list["clothes"]["shoes"]
-    items = []
-    for iter in range(el["count"]):
-        items.append(el["name"] + " " + str(iter + 1))
-    current_card.add_checklist("Обувь", items)
-
-    current_card = current_lst.add_card("Дополнительная одежда")
-    params = list["clothes"]["additional"]
-    items = []
-    for iter in range(el["count"]):
-        items.append(el["name"] + " " + str(iter + 1))
-    current_card.add_checklist("Дополнительная одежда", items)
+    clothes_list = board.add_list("Одежда")
+    trello_add_clothes(request,clothes_list)
+   
