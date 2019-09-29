@@ -7,7 +7,7 @@ client = TrelloClient(
 )
 
 
-def trello_save_list(card , save_list):
+def trello_save_list(card, save_list):
     items_list = []
     for item in save_list:
         for item_iter in range(item["count"]):
@@ -16,9 +16,8 @@ def trello_save_list(card , save_list):
 
 
 def trello_add_other(request, other_list):
-
     activity_card = other_list.add_card("Активности")
-    trello_save_list(activity_card,request["activities"])
+    trello_save_list(activity_card, request["activities"])
 
     med_card = other_list.add_card("Лекарства")
     trello_save_list(med_card, request["medicines"])
@@ -27,8 +26,7 @@ def trello_add_other(request, other_list):
     trello_save_list(cosm_card, request["hygiene/cosmetics"])
 
 
-def trello_add_clothes(request , clothes_list):
-
+def trello_add_clothes(request, clothes_list):
     under_card = clothes_list.add_card("Верхняя одежда")
     trello_save_list(under_card, request["clothes"]["outerwear"])
 
@@ -44,16 +42,13 @@ def trello_add_clothes(request , clothes_list):
 
 def save(request):
     name = "Поездка " + request["source"]["arrival_date"] + " " + request["source"]["destination_point"]
-    
-    # TODO создаём доску или пересобирает её
-    found = False
+
     all_boards = client.list_boards()
     for brd in all_boards:
         if brd.name == name:
             board = brd
-            found = True
             print("Board with name: " + name + " found")
-    if not found:
+    else:
         print("Creating board with name: " + name)
         board = client.add_board(name)
 
@@ -61,13 +56,11 @@ def save(request):
     for col in cols:
         col.close()
 
-    # TODO Реклама
     ad_list = board.add_list("Акции и предложения")
     req_ad = request["ad"]
     for ad in req_ad:
         ad_list.add_card(ad)
-    
-    # TODO Информация
+
     special_list = board.add_list("Информация")
     for label in board.get_labels():
         if label.color == 'green':
@@ -78,7 +71,6 @@ def save(request):
             yellow_label = label
     req_info = request["advices"]["info"]
 
-    # TODO не правильно с температурой
     for inf in req_info:
         special_list.add_card("Ожидаемая температура: " + str(req_info["temperature"]), labels=[yellow_label])
     req_not_rec = request["advices"]["not_recommended"]
@@ -88,11 +80,8 @@ def save(request):
     for rec in req_rec:
         special_list.add_card(rec, labels=[green_label])
 
-    # TODO Другое
     other_list = board.add_list("Другое")
-    trello_add_other(request , other_list)
+    trello_add_other(request, other_list)
 
-    # TODO Одежда
     clothes_list = board.add_list("Одежда")
-    trello_add_clothes(request,clothes_list)
-   
+    trello_add_clothes(request, clothes_list)
