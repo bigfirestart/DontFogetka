@@ -70,8 +70,8 @@ def add_activities(activity, available, **kwargs):
     result = []
     for item in available:
         if available[item]["type"] == activity:
-            count = get_count_by_sex(available[item]["sex"], **kwargs)
-            result.append({"name": item, "count": count})
+            tourist_count = get_count_by_sex(available[item]["sex"], **kwargs)
+            result.append({"name": item, "count": tourist_count})
     return result
 
 
