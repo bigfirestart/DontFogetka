@@ -20,7 +20,6 @@ def trello_save_list(card, save_list):
 
 def trello_add_other(request, other_list):
     activity_card = other_list.add_card("Активности")
-    activities_list = []
     for i in range(len(request["activities"])):
         request["activities"][i]["name"] =request["activities"][i]["name"]  +" x"+ str(request["activities"][i]["count"])
         request["activities"][i]["count"] = 1
