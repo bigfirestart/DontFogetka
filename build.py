@@ -50,7 +50,6 @@ def add_clothes(tourists, available, **kwargs):
     females_count = kwargs["females_count"]
     travel_duration = kwargs["travel_duration"]
 
-    print(get_tourists_by_sex(tourists,"M"))
     for item in available:
         if is_in_temperature_range(available[item]["temp"], temperature):
             tourists_count = get_count_by_sex(available[item]["sex"], **kwargs)
@@ -68,7 +67,7 @@ def add_activities(activity, available, **kwargs):
     females_count = kwargs["females_count"]
     result = []
     for item in available:
-        if available[item] == activity:
+        if available[item]["type"] == activity:
             count = get_count_by_sex(available[item]["sex"], **kwargs)
             result.append({"name": item, "count": count})
     return result
@@ -85,7 +84,7 @@ def build(request):
     # TODO ищет месяц
     city = request["destination_point"]
 
-    #TODO смотрим колличество дней
+    # TODO смотрим колличество дней
     travel_duration = get_travel_duration(request["arrival_date"] , request["return_date"])
 
     # 12.12.2109
@@ -108,7 +107,7 @@ def build(request):
 
     # TODO подбирает вещи
     clothes_list = json.load(open("templates/Clothes.json"))
-    result = json.load(open("templates/EmptyPrediction.json"))
+    result = json.load(open("templates/EmptyList.json"))
 
     result["clothes"].update(
         add_clothes(
@@ -136,7 +135,7 @@ def build(request):
     result["hygiene/cosmetics"].append(
         {"name": "Гель для душа", "count": int(males_count > 0) + int(females_count > 0)})
     result["hygiene/cosmetics"].append({"name": "Шампунь", "count": int(males_count > 0) + int(females_count > 0)})
-    result["hygiene/cosmetics"].append({"name": "Мачалка", "count": males_count + females_count})
+    result["hygiene/cosmetics"].append({"name": "Мочалка", "count": males_count + females_count})
     result["hygiene/cosmetics"].append({"name": "Косметичка", "count": females_count})
 
     # TODO добавляем рекламу
@@ -145,8 +144,17 @@ def build(request):
     # TODO добавляем погоду
     result["advices"]["info"] = {"temperature": temperature}
     result["source"] = request
-    return result
 
+    # TODO добавляем варнинги
+    warnings_list = json.loads(open("templates/Warnings.json", 'r').read())
+    sity = request["destination_point"]
+
+    for warning in warnings_list:
+        if sity in warnings_list[warning]["cities"]:
+            result["advices"]["recommended"].append(warning)
+
+
+    return result
 
 
 if __name__ == '__main__':
