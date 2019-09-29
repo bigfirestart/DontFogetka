@@ -19,6 +19,7 @@ def update_response(response: Response):
 
 
 def fix_date(date):
+    date = date.split(",")[0]
     return date.replace(' ', '.') \
         .replace('янв', '01') \
         .replace('фев', '02') \
