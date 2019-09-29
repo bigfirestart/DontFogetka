@@ -1,0 +1,20 @@
+[Unit]
+Description=Service for creating travel checklist
+After=network.target
+
+[Service]
+PIDFile=/run/dontforgetka.pid
+WorkingDirectory=/home/qqqq/DontFogetka
+
+StandardInput=null
+StandardOutput=syslog
+StandardError=syslog
+
+User=nikola
+Group=nikola
+
+ExecStart=/home/qqq/.local/bin/pipenv run python3 web.py
+TimeoutSec=5
+
+[Install]
+WantedBy=multi-user.target
