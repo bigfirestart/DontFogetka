@@ -15,24 +15,18 @@
         "resources/*"
     ],
 
-    "content_scripts": 
+    "content_scripts":  
     [
         {
-            "matches": ["https://www.aviasales.ru/search/*", "https://www.aviasales.com/search/*"],
+            "matches": ["https://www.aviasales.ru/search/*"],
             "run_at": "document_end",
             "js": ["content-scripts/buyTicketListener.js"]
         },
 
         {
-            "matches": ["https://www.aviasales.ru/search/*", "https://www.aviasales.com/search/*"],
+            "matches": ["https://www.aviasales.ru/search/*"],
             "run_at": "document_start",
             "js": ["scripts/jquery-3.4.1.min.js"]
-        },
-
-        {
-            "matches": ["https://www.aviasales.ru/search/*", "https://www.aviasales.com/search/*"],
-            "run_at": "document_start",
-            "css": ["/resources/stylesheet.css"]
         }
     ],
 
@@ -41,12 +35,13 @@
         "scripts": [
             "background/buyTicketNotif.js"
         ],
-        "persistent": false
+        "persistent": true
     },
     
     "browser_action": 
     {
-        "default_popup": "about.html"
+        "default_popup": "about.html",
+        "default_stylesheet": "/resources/stylesheet.css"
     },
 
     "permissions": [

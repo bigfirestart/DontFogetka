@@ -3,16 +3,20 @@
     <head>
         <title>About</title>
         <meta charset="UTF-8" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
         <style>
             body {
                 margin: 0;
                 min-width: 400px;
                 background-color: #fafafa;
+                text-align: center;
             }
+
+            .item-block {
+                margin: 0.5em;
+            }
+
             .item-block:not(:first-child) {
                 padding: 5px;
-                text-align: center;
                 border-bottom: 1px solid darkgray;
             }
 
@@ -36,16 +40,15 @@
                 display: inline-block;
             }
 
-            .flight-item.both > .depart::after {
-                content: "<->";
+            .depart::after {
+                content: '=>';
                 margin: 0 1em
             }
-            
-            .flight-item.single > .depart::after {
-                background-image: url('resources/arrow.png');
-                width: 100px;
-                height: 100px;
-                background-size: cover;
+
+            .flight-item {
+                text-align: left;
+                display: flex;
+                flex-direction: row;
             }
 
             .date-to::before {
@@ -60,6 +63,21 @@
                 text-align: left;
             }
 
+            .btn {
+                padding: 0.2em;
+                background-color: rgb(0, 105, 224);
+                color: azure;
+                font-size: 1em;
+                text-align: center;
+                margin-left: 2rem;
+                margin-top: 0.3rem;
+                border-radius: 5px;
+                cursor: pointer;
+                user-select: none;
+            }
+
+
+
         </style>
         <script src="scripts/popup.js"></script>
         <script src="scripts/jquery-3.4.1.min.js"></script>
@@ -67,12 +85,8 @@
     </head>
     <body>
 
-        <div class="item-block">
+        <div>
             <img src="resources/icon-extend-2.svg" alt="icon" />
-        </div>
-
-        <div class="item-block">
-            <p>Описание...</p>
         </div>
 
         <div id="saved-flights" class="item-block">
@@ -80,13 +94,7 @@
             <br/>Начните свое путешествие вместе с сайтом <a href="https://www.aviasales.ru/search/">Aviasales</a>.</span></p>    
 
             <div id="flights-list">
-                <div class="flight-item single">
-                    <div class="depart">Saint Petersburg</div>
-                    <div class="destin">Rio de Janeiro</div>
-
-                    <div class="date-to">19-04-2020</div>
-                    <div class="date-from">20-04-2020</div>
-                </div>
+                
             </div>
         </div>
 
@@ -99,44 +107,50 @@
             <div class="date-from" id="date-from-info"></div>
 
             <h3>Вид путешествия</h3>
-            <label for="sports">sports</label>
-            <input type="checkbox" name="tag" id="sports" />
+            <label for="skiing">skiing</label>
+            <input type="checkbox" name="tag" id="skiing" value="skiing" />
+
+            <label for="run">run</label>
+            <input type="checkbox" name="tag" id="run" value="run"/>
+
+            <label for="beach">beach</label>
+            <input type="checkbox" name="tag" id="beach" value="beach"/>
 
             <label for="business">business</label>
-            <input type="checkbox" name="tag" id="business" />
+            <input type="checkbox" name="tag" id="business" value="work" />
         </div>
     
         <div id="pass-info" class="item-block invisible">
             <h2>Информация о пассажирах</h2>
-            <form id="pass-proto" class="invisible">
-                <div>
-                    <label for="pass-name-id">Имя</label>
-                    <input id="pass-name-id" type="text" name="pass-name" placeholder="Имя пассажира"/>
-                </div>
-    
-                <div>
-                    <div id="del-pass-btn"></div>
-
-                    <label for="male">Муж</label>
-                    <input type="radio" id="male" name="sex" value="M"/>
-    
-                    <label for="female">Жен</label>
-                    <input type="radio" id="female" name="sex" value="F"/>
-                </div>
-    
-                <div>
-                    <label for="child">Ребенок</label>
-                    <input type="radio" id="child" name="age" value="child"/>
-        
-                    <label for="female">Взрослый</label>
-                    <input type="radio" id="adult" name="age" value="adult"/>
-                </div>
-
-            </form>
             <div id="pass-container"></div>
             <div id="add-pass-btn">Добавить пассажира</div>
         </div>
         <button class="invisible" id="done-btn">Готово</button>
-        <button class="invisible" id="cancel-btn">Отмена</button>        
+        <button class="invisible" id="cancel-btn">Отмена</button> 
+        
+        <form id="pass-proto" class="invisible">
+            <div class="form-group">
+                <label for="pass-name-id">Имя</label>
+                <input required id="pass-name-id" type="text" name="pass-name" placeholder="Имя пассажира"/>
+            </div>
+
+            <div>
+                <div id="del-pass-btn"></div>
+
+                <label for="male">Муж</label>
+                <input checked type="radio" id="male" name="sex" value="M"/>
+
+                <label for="female">Жен</label>
+                <input type="radio" id="female" name="sex" value="F"/>
+            </div>
+
+            <div>
+                <label for="female">Взрослый</label>
+                <input checked type="radio" id="adult" name="age" value="adult"/>
+
+                <label for="child">Ребенок</label>
+                <input type="radio" id="child" name="age" value="child"/>
+            </div>
+        </form>
     </body>
 </html>
