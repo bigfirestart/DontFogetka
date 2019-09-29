@@ -1,7 +1,5 @@
 $(document).ready(function() {
     var mutationObserver = new MutationObserver(function(records) {
-        var $sideContent = $('.ticket-desktop__side-content');
-
         var needUpdate = false;
         records.forEach(record => {
             var list = record.addedNodes;
@@ -14,18 +12,28 @@ $(document).ready(function() {
         });
 
         if (needUpdate) {
-            $('.nezabudka-btn').remove();
+            $('.save-flight-btn').remove();
+            var $carrLinks = $('.ticket-desktop__carriers-link');
 
             console.log('need update!');
-            var btn = $('<button>')
-                .text('subscribe')
-                .addClass('nezabudka-btn');
+            var button = $('<img>');
+            button.click(() => {
+                    var info = getFlightInfoFromPage(button[0]);
+                    console.log( JSON.stringify(info) );
 
-            var cont = $("<div>")
-                .css('text-align', 'center')
-                .appendTo($sideContent);
+                    var message = {
+                        type: 'choose-flight',
+                        flightInfo: info
+                    };
+
+                    chrome.runtime.sendMessage(message, function(response) {
+                        console.log(response.message);
+                    });
+                })
+                .attr('src', chrome.extension.getURL('resources/icon-light.svg'))
+                .addClass('save-flight-btn')
+                .insertAfter($carrLinks);
                 
-            btn.appendTo(cont);
         }
     });
 
@@ -83,14 +91,25 @@ function getFlightInfoFromPage(buttonElem) {
     var listItem = closestByClassName(buttonElem, 'product-list__item');
     var $listItem = $(listItem);
 
-    var $ticketFirstSegment = $listItem.find('.ticket-desktop__segment:first-child');
-    var $ticketLastSegment = $listItem.find('.ticket-desktop__segment:last-child');
+    var $ticketSegmentList = $listItem.find('.ticket-desktop__segment');
+    var transitCount = $ticketSegmentList.length;
+
+    var $ticketFirstSegment = $ticketSegmentList.first();
+    var $ticketLastSegment;
+
+    if (transitCount > 1) {
+        $ticketLastSegment = $ticketSegmentList.last();
+
+        info.return_date = $ticketLastSegment
+            .find('.segment-route__endpoint.origin')
+            .find('.segment-route__date')
+            .text();
+    }
     
     info.departure_point = $ticketFirstSegment
         .find('.segment-route__endpoint.origin')
-        .find('.segment-route__city');
-
-    info.departure_point = info.departure_point.text();
+        .find('.segment-route__city')
+        .text();
 
     info.destination_point = $ticketFirstSegment
         .find('.segment-route__endpoint.destination')
@@ -99,11 +118,6 @@ function getFlightInfoFromPage(buttonElem) {
     
     info.arrival_date = $ticketFirstSegment
         .find('.segment-route__endpoint.destination')
-        .find('.segment-route__date')
-        .text();
-
-    info.return_date = $ticketLastSegment
-        .find('.segment-route__endpoint.origin')
         .find('.segment-route__date')
         .text();
 

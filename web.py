@@ -19,6 +19,7 @@ def update_response(response: Response):
 
 
 def fix_date(date):
+    date = date.split(",")[0]
     return date.replace(' ', '.') \
         .replace('янв', '01') \
         .replace('фев', '02') \
@@ -55,4 +56,4 @@ def save_predictions():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=True)

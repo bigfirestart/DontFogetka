@@ -11,12 +11,18 @@ def trello_save_list(card, save_list):
     items_list = []
     for item in save_list:
         for item_iter in range(item["count"]):
-            items_list.append(item["name"] + " " + str(item_iter + 1))
+            if item["count"] == 1:
+                items_list.append(item["name"])
+            else:
+                items_list.append(item["name"] + " " + str(item_iter + 1))
     card.add_checklist(card.name, items_list)
 
 
 def trello_add_other(request, other_list):
     activity_card = other_list.add_card("Активности")
+    for i in range(len(request["activities"])):
+        request["activities"][i]["name"] =request["activities"][i]["name"]  +" x"+ str(request["activities"][i]["count"])
+        request["activities"][i]["count"] = 1
     trello_save_list(activity_card, request["activities"])
 
     med_card = other_list.add_card("Лекарства")
@@ -48,6 +54,7 @@ def save(request):
         if brd.name == name:
             board = brd
             print("Board with name: " + name + " found")
+            break
     else:
         print("Creating board with name: " + name)
         board = client.add_board(name)
